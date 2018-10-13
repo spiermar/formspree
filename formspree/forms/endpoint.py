@@ -225,7 +225,7 @@ def send(email_or_string):
     if settings.FORM_WHITELIST:
         whitelist = settings.FORM_WHITELIST.split(',')
         if email_or_string not in whitelist:
-            return errors.generic_send_error
+            return errors.generic_send_error(400)
 
     if request.method == 'GET':
         return errors.bad_method_error()
