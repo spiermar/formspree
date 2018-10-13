@@ -207,7 +207,7 @@ def response_for_status(form, host, referrer, status):
     if status['code'] == Form.STATUS_REPLYTO_ERROR:
         return errors.malformed_replyto_error(status)
 
-    return errors.generic_send_error(send)
+    return errors.generic_send_error(status)
 
 
 @cross_origin(allow_headers=['Accept', 'Content-Type',
@@ -225,7 +225,7 @@ def send(email_or_string):
     if settings.FORM_WHITELIST:
         whitelist = settings.FORM_WHITELIST.split(',')
         if email_or_string not in whitelist:
-            return errors.generic_send_error(400)
+            return errors.generic_send_error({'error': "Unable to send email"})
 
     if request.method == 'GET':
         return errors.bad_method_error()
