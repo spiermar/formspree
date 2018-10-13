@@ -22,7 +22,7 @@ formspree/static/main.min.css:  $(shell find formspree/scss) dart-sass/src/dart
 	cd dart-sass && ./sass --style=compressed ../formspree/scss/main.scss ../formspree/static/main.min.css
 
 dart-sass/src/dart:
-	FILE=`python3 -c 'print("dart-sass-1.13.0-" + ("linux" if "linux" in "'$$(uname -o)'".lower() else "macos") + "-" + ("x64" if "64" in "'$$(uname -m)'" else "ia32") + ".tar.gz")'` && \
+	FILE=`python3 -c 'print("dart-sass-1.13.0-" + ("linux" if "linux" in "'$$(uname)'".lower() else "macos") + "-" + ("x64" if "64" in "'$$(uname -m)'" else "ia32") + ".tar.gz")'` && \
         wget "https://github.com/sass/dart-sass/releases/download/1.13.0/$$FILE" -O $$FILE && \
         tar -xvf $$FILE && \
         rm $$FILE
